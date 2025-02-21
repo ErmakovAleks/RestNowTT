@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:rest_now_tt/src/routes/router.dart';
+import 'package:rest_now_tt/src/utils/shared_preferences_wrapper.dart';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferencesWrapper.processInitialize();
+  
+  runApp(const MassageApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MassageApp extends StatelessWidget {
+  const MassageApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      title: 'Massage Simulator',
+      initialRoute: AppRouteKeys.payment,
+      onGenerateRoute: AppRouter,
     );
   }
 }
